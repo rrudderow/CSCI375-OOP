@@ -1,39 +1,7 @@
-class Warehouse:
-    def __init__(self, name):
-        self.name = name
-        self.items = []  # List to hold items in the warehouse
-    
-    def add_item(self, item):
-        # Adds an item to the warehouse's list of items
-        if isinstance(item, Item):
-            self.items.append(item)
-        else:
-            print("Only Item objects can be added to the warehouse.")
-    
-    def list_items(self):
-        # Prints all items in the warehouse
-        if not self.items:
-            print(f"{self.name} is empty.")
-        else:
-            print(f"Items in {self.name}:")
-            for item in self.items:
-                print(f"- {item.name} (ID: {item.item_id})")
+from warehouse import Warehouse
+from item import Item
 
-class Item:
-    def __init__(self, name, item_id, warehouse=None):
-        self.name = name
-        self.item_id = item_id
-        self.warehouse = warehouse
-        
-        # Automatically associate this item with the given warehouse
-        if warehouse:
-            warehouse.add_item(self)
-    
-    def __str__(self):
-        # Return a string representation of the item
-        return f"Item {self.name} (ID: {self.item_id})"
 
-# Example usage
 if __name__ == "__main__":
     # Create a warehouse
     warehouse1 = Warehouse("Warehouse A")
