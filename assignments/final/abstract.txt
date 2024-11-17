@@ -1,0 +1,11 @@
+We are planning to create an inventory management system that allows the user to add and 
+subtract items and keeps track of how many items have been sold. The program will allow for 
+location data to be kept and updated as product is shipped around. Each item will contain its 
+current location and whether it will be moved. Location data will be an attribute of the product. 
+The program will be able to tell the user how many of each product are at each location. 
+
+"""
+CLI state machiene
+iterator pattern
+singleton on CLI
+"""
