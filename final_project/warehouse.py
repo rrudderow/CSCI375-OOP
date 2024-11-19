@@ -1,4 +1,4 @@
-from item import Item
+from final_project.item import Item
 
 
 class Warehouse:

@@ -1,4 +1,3 @@
-from warehouse import Warehouse
 
 
 class Item:
