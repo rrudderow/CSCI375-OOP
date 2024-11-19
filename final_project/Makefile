@@ -17,11 +17,6 @@ unittest:
 	@echo "run pytest"
 	pytest --verbose --color=yes --cov --cov-report term-missing --cov-report html .
 
-.PHONY: local_test
-local_test:
-	@echo "run kattis testing"
-	kattis test
-
 .PHONY: html-doc
 html-doc:
 	pydoc -w ./*py
