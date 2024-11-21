@@ -1,7 +1,7 @@
 """This program is an Inventory Management System that is able to store """
 
-from final_project.warehouse import Warehouse
-from final_project.item import Item
+from warehouse import Warehouse
+from item import Item
 
 
 if __name__ == "__main__":

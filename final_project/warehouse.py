@@ -9,7 +9,7 @@ Warehouse Class:
 * __print__
 """
 
-from final_project.item import Item
+from item import Item
 
 
 class Warehouse:
@@ -32,24 +32,22 @@ class Warehouse:
         """ Adds an item to the Warehouse """
         self.items.append(item)
 
-    def send_item(self, item_name: str, other: Warehouse) -> None:
-        """ Sends an item from current Warehouse to other """
-        item: Item = self.items.find(item_name)
-        if item == -1:
-            raise NameError("There is not an item by that name in the Warehouse")
-        other.add_item(self.items.find(item_name))
-        self.remove_item(self.item_name)
+    def send_item(self, item_name: str, other: "Warehouse") -> None:
+        """ Sends an item from current Warehouse to another """
+        item = next((item for item in self.items if item.name == item_name), None)
+        if not item:
+            raise ValueError(f"Item '{item_name}' not found in {self.name}.")
+        other.add_item(item)
+        self.remove_item(item_name)
 
     def remove_item(self, item_name: str) -> None:
         """ Removes an item from the current Warehouse """
-        self.items.remove(item_name)
+        self._items = [item for item in self.items if item.name != item_name]
 
-
-    def __print__(self):
-        # Prints all items in the warehouse
+    def list_items(self):
+        """ Prints unique """
         if not self.items:
             print(f"{self.name} is empty.")
         else:
-            print(f"Items in {self.name}:")
             for item in self.items:
-                print(f"- {item.name} (ID: {item.item_id})")
+                print(f"{item.name}")
