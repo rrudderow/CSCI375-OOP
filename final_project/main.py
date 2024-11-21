@@ -30,6 +30,7 @@ if __name__ == "__main__":
 
     # Example creation of a perishable item
     perishable_item = Perishables("Milk", "12345", date(2024, 11, 25), warehouse)
+    warehouse.list_items()
 
     # Check if expired
     print(perishable_item.is_expired())  # Will return True or False depending on the current date
