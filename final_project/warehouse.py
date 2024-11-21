@@ -49,5 +49,7 @@ class Warehouse:
         if not self.items:
             print(f"{self.name} is empty.")
         else:
+            print(f"Items at {self.name}:")
             for item in self.items:
                 print(f"{item.name}")
+            print('\n')
