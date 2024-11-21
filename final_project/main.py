@@ -1,7 +1,8 @@
 """This program is an Inventory Management System that is able to store """
 
+from datetime import date
 from warehouse import Warehouse
-from item import Item
+from item import Item, Perishables
 
 
 if __name__ == "__main__":
@@ -11,6 +12,8 @@ if __name__ == "__main__":
     # Create some items and associate them with the warehouse
     item1 = Item("Laptop", 101, warehouse1)
     item2 = Item("Phone", 102, warehouse1)
+    print(item1)
+    print(item2)
     
     # List all items in the warehouse
     warehouse1.list_items()
@@ -21,3 +24,24 @@ if __name__ == "__main__":
     
     # List items in the second warehouse
     warehouse2.list_items()
+
+    # Create a warehouse
+    warehouse = Warehouse("Central Warehouse")
+
+    # Example creation of a perishable item
+    perishable_item = Perishables("Milk", "12345", date(2024, 11, 25), warehouse)
+
+    # Check if expired
+    print(perishable_item.is_expired())  # Will return True or False depending on the current date
+
+    # String representation
+    print(perishable_item)  # Output: Perishable Item Milk (ID: 12345), Expiration Date: 2024-11-25
+    print('\n\n')
+
+    # Create a perishable item associated with the warehouse
+    perishable_item = Perishables("Milk", "12345", date(2024, 11, 25), warehouse)
+
+
+
+    # String representation
+    print(perishable_item)  # Output: Perishable Item Fresh Milk (ID: 54321), Expiration Date: 2024-12-25, Warehouse: Warehouse Central Warehouse
