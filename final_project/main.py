@@ -33,3 +33,28 @@ if __name__ == "__main__":
 
     # String representation
     print(perishable_item)  # Output: Perishable Item Milk (ID: 12345), Expiration Date: 2024-11-25
+    print('\n\n')
+
+    # Create a warehouse
+    warehouse = Warehouse("Central Warehouse")
+
+    # Create a perishable item associated with the warehouse
+    perishable_item = Perishables("Milk", "12345", date(2024, 11, 25), warehouse)
+
+    # Use @property to access attributes
+    print(perishable_item.name)  # Output: Milk
+    print(perishable_item.item_id)  # Output: 12345
+    print(perishable_item.expiration_date)  # Output: 2024-11-25
+
+    # Use @<property>.setter to modify attributes
+    perishable_item.name = "Fresh Milk"
+    perishable_item.item_id = "54321"
+    perishable_item.expiration_date = date(2024, 12, 25)
+
+    # Check the updated values
+    print(perishable_item.name)  # Output: Fresh Milk
+    print(perishable_item.item_id)  # Output: 54321
+    print(perishable_item.expiration_date)  # Output: 2024-12-25
+
+    # String representation
+    print(perishable_item)  # Output: Perishable Item Fresh Milk (ID: 54321), Expiration Date: 2024-12-25, Warehouse: Warehouse Central Warehouse
