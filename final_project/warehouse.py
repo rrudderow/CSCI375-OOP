@@ -1,19 +1,51 @@
+#! usr/bin/env python3
+
+"""
+Warehouse Class:
+* __init__
+* add_item
+* send_item
+* remove_item
+* __print__
+"""
+
 from final_project.item import Item
 
 
 class Warehouse:
-    def __init__(self, name):
-        self.name = name
-        self.items = []  # List to hold items in the warehouse
+    def __init__(self, name: str) -> None:
+        """ Constructor """
+        self._name: str = name
+        self._items: Item = []  # should be viable with subclasses of Item
 
-    def add_item(self, item):
-        # Adds an item to the warehouse's list of items
-        if isinstance(item, Item):
-            self.items.append(item)
-        else:
-            print("Only Item objects can be added to the warehouse.")
+    @property
+    def name(self) -> str:
+        """ Getter for _name """
+        return self._name
 
-    def list_items(self):
+    @property
+    def items(self) -> list[Item]:
+        """ Getter for _items """
+        return self._items
+
+    def add_item(self, item: Item) -> None:
+        """ Adds an item to the Warehouse """
+        self.items.append(item)
+
+    def send_item(self, item_name: str, other: Warehouse) -> None:
+        """ Sends an item from current Warehouse to other """
+        item: Item = self.items.find(item_name)
+        if item == -1:
+            raise NameError("There is not an item by that name in the Warehouse")
+        other.add_item(self.items.find(item_name))
+        self.remove_item(self.item_name)
+
+    def remove_item(self, item_name: str) -> None:
+        """ Removes an item from the current Warehouse """
+        self.items.remove(item_name)
+
+
+    def __print__(self):
         # Prints all items in the warehouse
         if not self.items:
             print(f"{self.name} is empty.")
