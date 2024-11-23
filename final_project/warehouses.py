@@ -40,3 +40,7 @@ class Warehouses:
         for i in self._warehouses:
             if name == i.name:
                 return i
+            
+    def showWarehouses(self):
+        for i in self._warehouses:
+            print(i)

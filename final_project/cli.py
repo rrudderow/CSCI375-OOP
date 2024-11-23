@@ -24,16 +24,17 @@ class Cli:
         
         name = "default"
 
-        while name != "":
+        while name != "q":
             
-            print("enter new to create a warehouse\n"
+            print("enter newWh to create a warehouse\n"
                   "enter addItem to add an item to a warehouse\n"
                   "enter moveItem to move an item to a new warehose\n" 
-                  "enter view to see warehouses\n")
+                  "enter view to see all warehouses\n"
+                  "enter viewWh to see a specific warhose and its items\n")
             
             name = sys.stdin.readline()[:-1]
             
-            if (name == "new"):
+            if (name == "newWh"):
                 print("what do you want to name your warehouse")
                 whName = sys.stdin.readline()[:-1]
                 warehouses.createWarehouse(whName)
@@ -65,6 +66,10 @@ class Cli:
                 warehouses.getWarehouse(moveWh).send_item(itmName, warehouses.getWarehouse(other))
                 
             if (name == "view"):
+
+                warehouses.showWarehouses()
+
+            if (name == "viewWh"):
             
                 print("which warehouse would you like to see: ")
                 name = sys.stdin.readline()[:-1]
