@@ -4,9 +4,13 @@ from datetime import date
 from warehouse import Warehouse
 from item import Item
 from perishables import Perishables
+from cli import Cli
 
 
 if __name__ == "__main__":
+
+    cli = Cli()
+    cli.nameWarehouses()
     # Create a warehouse
     warehouse1 = Warehouse("Warehouse A")
 
