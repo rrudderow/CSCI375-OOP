@@ -71,6 +71,3 @@ class Cli:
                 name = sys.stdin.readline()[:-1]
 
                 warehouses.getWarehouse(name)
-
-    def getWarehouse(name: str) -> None:
-        
