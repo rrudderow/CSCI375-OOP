@@ -26,29 +26,30 @@ class Cli:
 
         while name != "":
             
-            print("enter new to create a warehouse\n"
-                  "enter addItem to add an item to a warehouse\n"
-                  "enter moveItem to move an item to a new warehose\n" 
-                  "enter view to see warehouses\n")
+            print("1) Create a new warehouse\n"
+                  "2) Add an item to a warehouse\n"
+                  "3) Move an item to a new warehose\n" 
+                  "4) View all items at a warehouse\n")
             
             name = sys.stdin.readline()[:-1]
             
-            if (name == "new"):
+            if (name == "1"):
                 print("what do you want to name your warehouse")
                 whName = sys.stdin.readline()[:-1]
                 warehouses.createWarehouse(whName)
             
-            if (name == "addItem"):
+            if (name == "2"):
                 
-                print("give the item name, id then name of warehouse: ")
-
+                print("Item name: ")
                 itemName = sys.stdin.readline()[:-1]
+                print("Item ID: ")
                 itemID = sys.stdin.readline()[:-1]
+                print("Name of Warehouse: ")
                 whName = sys.stdin.readline()[:-1]
                 
                 Item(itemName, itemID, warehouses.getWarehouse(whName))
 
-            if (name == "moveItem"):
+            if (name == "3"):
 
                 print("give the name of the warehouse you want to move from: ")
 
@@ -64,9 +65,12 @@ class Cli:
 
                 warehouses.getWarehouse(moveWh).send_item(itmName, warehouses.getWarehouse(other))
                 
-            if (name == "view"):
+            if (name == "4"):
             
                 print("which warehouse would you like to see: ")
                 name = sys.stdin.readline()[:-1]
 
                 warehouses.getWarehouse(name)
+
+    def getWarehouse(name: str) -> None:
+        
