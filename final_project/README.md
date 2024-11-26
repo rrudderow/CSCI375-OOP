@@ -22,3 +22,29 @@ ________________________________________________________________________________
 | Location: | https://github.com/rrudderow/CSCI375-OOP |
 | Self Grade | 80/100
 | Notes: | Completed all the requirements passed tests with 100% coverage |
+
+# Group Objectives
+
+## Aidan Meens
+| Name | Value |
+| --- | --- |
+| Objectives | Make the Warehouse class, Testing  |
+| Due Date: | 12/03/24 |
+| Status: | In Progress |
+| Notes: |  |
+
+## Renee Rudderow
+| Name | Value |
+| --- | --- |
+| Objectives | Make the Items class, Testing,  |
+| Due Date: | 12/03/24 |
+| Status: | In Progress |
+| Notes: |  |
+
+## Cody Stoffel
+| Name | Value |
+| --- | --- |
+| Objectives | Make the Cli and Warehouses class, Testing  |
+| Due Date: | 12/03/24 |
+| Status: | In Progress |
+| Notes: |  |
