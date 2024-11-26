@@ -25,5 +25,7 @@ class Perishables(Item):
 
     def __repr__(self):
         """Override the string representation to include expiration date and warehouse"""
-        warehouse_info = f", Warehouse: {self._warehouse}" if self._warehouse else ""
-        return f"Perishable Item {self._name} (ID: {self._item_id}), Expiration Date: {self._expiration_date}{warehouse_info}"
+        # I commented these out to avoid an infinite recursion error with Warehouse.__repr__
+        # warehouse_info = f", Warehouse: {self._warehouse}" if self._warehouse else ""
+        # return f"Perishable Item {self._name} (ID: {self._item_id}), Expiration Date: {self._expiration_date}{warehouse_info}"
+        return f"Perishable Item {self._name} (ID: {self._item_id}), Expiration Date: {self.expiration_date}"
