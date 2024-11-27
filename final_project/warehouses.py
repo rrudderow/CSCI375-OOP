@@ -41,6 +41,20 @@ class Warehouses:
             if name == i.name:
                 return i
             
+    def listWarehouses(self):
+        warehouses=[]
+        for i in self._warehouses:
+            warehouses.append(i)
+
+        return warehouses
+
+            
     def showWarehouses(self):
         for i in self._warehouses:
             print(i)
+
+    def remove_Warehouse(self, warehouse_name: str) -> None:
+        """ Removes a Warehuse from the current Warehouses """
+        self._warehouses.remove(next((warehouse for warehouse in self._warehouses if warehouse.name == warehouse_name), None))
+
+    

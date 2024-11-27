@@ -10,7 +10,7 @@ from cli import Cli
 if __name__ == "__main__":
 
     cli = Cli()
-    cli.nameWarehouses()
+    cli.run_cli()
     # Create a warehouse
     warehouse1 = Warehouse("Warehouse A")
 
