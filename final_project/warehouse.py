@@ -8,7 +8,7 @@ Warehouse Class:
 * __repr__
 """
 
-from typing import Dict
+from typing import Dict, List
 from item import Item
 from perishables import Perishables
 
@@ -17,7 +17,7 @@ class Warehouse:
     def __init__(self, name: str) -> None:
         """ Constructor """
         self._name: str = name
-        self._items: Item = []  # should be viable with subclasses of Item
+        self._items: List[Item] = []  # should be viable with subclasses of Item
 
     @property
     def name(self) -> str:
@@ -25,7 +25,7 @@ class Warehouse:
         return self._name
 
     @property
-    def items(self) -> list[Item]:
+    def items(self) -> List[Item]:
         """ Getter for _items """
         return self._items
 
