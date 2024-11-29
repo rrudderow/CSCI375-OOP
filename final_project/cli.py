@@ -114,7 +114,7 @@ class Cli:
                 print("which warehouse would you like to see: ")
                 name = sys.stdin.readline()[:-1]
 
-                print(warehouses.getWarehouse(name))
+                #print(warehouses.getWarehouse(name))
 
                 table = Table(title= name)
 
@@ -142,10 +142,10 @@ class Cli:
                         else:
                             item_counts[item.name] += 1
 
-                for i in warehouses.getWarehouse(name).items:
+                for key, value in item_counts.items():
                     
 
-                    table.add_row(repr(i), str(item_counts[i.name]))
+                    table.add_row(key, str(value))
 
                 self.console.print(table)
 
