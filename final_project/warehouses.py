@@ -1,8 +1,12 @@
+"""this keeps track of warehouses and items in them"""
+
 from typing import Optional
+from typing import Any
 from warehouse import Warehouse
 
+
 class Warehouses:
-    
+    """class keeps track of warehouses and itmes in them"""
     _instance: Optional["Warehouses"] = None
 
     def __init__(self) -> None:
@@ -30,31 +34,33 @@ class Warehouses:
         """
         cls._instance = None
 
-    def createWarehouse(self, name) -> None :
-        
+    def create_warehouse(self, name: str) -> None :
+        """creates a warehouse"""
+
         warehouse = Warehouse(name)
         self._warehouses.append(warehouse)
 
-    
-    def getWarehouse(self, name):
+    def get_warehouse(self, name: str) -> Any:
+        """returns a warehouse"""
         for i in self._warehouses:
             if name == i.name:
                 return i
-            
-    def listWarehouses(self):
-        warehouses=[]
+
+    def list_warehouses(self) -> list[str]:
+        """returns a list of warehouses"""
+        warehouses = []
         for i in self._warehouses:
             warehouses.append(i)
 
         return warehouses
 
-            
-    def showWarehouses(self):
+    def show_warehouses(self) -> None:
+        """prints a warehouse"""
         for i in self._warehouses:
             print(i)
 
-    def remove_Warehouse(self, warehouse_name: str) -> None:
+    def remove_warehouse(self, warehouse_name: str) -> None:
         """ Removes a Warehuse from the current Warehouses """
-        self._warehouses.remove(next((warehouse for warehouse in self._warehouses if warehouse.name == warehouse_name), None))
-
-    
+        self._warehouses.remove(next((warehouse for warehouse in
+                                      self._warehouses if
+                                      warehouse.name == warehouse_name), None))
