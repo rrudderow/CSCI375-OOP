@@ -46,13 +46,23 @@ class Warehouse:
         """ Removes an item from the current Warehouse """
         self.items.remove(next((item for item in self.items if item.name == item_name), None))
 
-    def list_items(self):
+    def cli_items(self) -> Dict[str, int]:
         """ Prints unique """
-        # I'm only keeping this function to work with main.py's syntax
-        # you should just be able to use print(repr(<warehouse>))
-        # I'll delete this when we're only using Warehouses and the CLI
-        print("Warehouse.list_items() called!")
-        print(self)
+        item_counts: Dict[str, int] = {}
+
+        it = iter(self.items)
+        while True:
+            try:
+                item = next(it)
+            except StopIteration:
+                break
+            else: # main path
+                if repr(item) not in item_counts:
+                    item_counts[repr(item)] = 1
+                else:
+                    item_counts[repr(item)] += 1
+        return item_counts
+
 
     def __repr__(self) -> str:
         """ Uses an iterator to create string repr of the Warehouse """

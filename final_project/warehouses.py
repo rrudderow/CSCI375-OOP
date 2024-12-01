@@ -57,7 +57,7 @@ class Warehouses:
     def show_warehouses(self) -> None:
         """prints a warehouse"""
         for i in self._warehouses:
-            print(i)
+            print(i)  # NEEDS TO CHANGE; SEND VALUES TO CLI
 
     def remove_warehouse(self, warehouse_name: str) -> None:
         """ Removes a Warehuse from the current Warehouses """
