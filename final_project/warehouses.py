@@ -17,7 +17,7 @@ class Warehouses:
                 "Cannot create multiple instances of \
                 a singleton class Solution")
 
-        self._warehouses: List[Warehouse] = []  # should be viable with subclasses of Item
+        self._warehouses: List[Warehouse] = []
         Warehouses._instance = self
 
     @classmethod
@@ -41,6 +41,12 @@ class Warehouses:
         warehouse = Warehouse(name)
         self._warehouses.append(warehouse)
 
+    def find_warehouse(self, wh_name: str) -> Warehouse | None:
+        for wh in self._warehouses:
+            if wh.name == wh_name:
+                return wh
+        return None
+
     def get_warehouse(self, name: str) -> Any:
         """returns a warehouse"""
         for i in self._warehouses:
@@ -62,6 +68,4 @@ class Warehouses:
 
     def remove_warehouse(self, warehouse_name: str) -> None:
         """ Removes a Warehuse from the current Warehouses """
-        self._warehouses.remove(next((warehouse for warehouse in
-                                      self._warehouses if
-                                      warehouse.name == warehouse_name), None))
+        self._warehouses.remove(self.find_warehouse(warehouse_name))
