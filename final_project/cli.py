@@ -109,7 +109,8 @@ class Cli:
         print("give the item's price: ")
         it_price = sys.stdin.readline()[:-1]
 
-        Item(item_name, item_id, it_price, warehouses.get_warehouse(wh_name))
+        Item(item_name, int(item_id), float(it_price), warehouses.get_warehouse(wh_name))
+        # warehouses.get_warehouse(wh_name).add_item(Item)
 
     def op_three(self,  warehouses: Warehouses) -> None:
         print("give the name of the warehouse you want to move from: ")
@@ -195,7 +196,7 @@ class Cli:
 
             if item:
                 # If the item is found, update its price
-                item.price = new_price  # Directly update the item's price
+                item.price = float(new_price)  # Directly update the item's price
                 print(f"The price of '{item_name}' has been updated to {new_price}.")
                 found_item = True
                 break  # Exit the loop after updating the item

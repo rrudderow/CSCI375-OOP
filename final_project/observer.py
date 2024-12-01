@@ -1,3 +1,3 @@
 class Observer:
-    def update(self):
+    def update(self) -> None:
         pass

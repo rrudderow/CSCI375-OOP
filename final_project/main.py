@@ -1,8 +1,5 @@
 """This program is an Inventory Management System that is able to store """
 
-from datetime import date
-from warehouse import Warehouse
-from item import Item
 from cli import Cli
 
 

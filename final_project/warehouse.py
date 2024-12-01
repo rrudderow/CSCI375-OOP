@@ -40,7 +40,7 @@ class Warehouse(Observer):
         if not item:
             raise ValueError(f"Item '{item_name}' not found in {self.name}.")
         other.add_item(item)
-        self.remove_item(item_name)
+        self.remove_item(item)
 
     def remove_item(self, item: Item) -> None:
         """ Removes an item from the current Warehouse """
@@ -64,7 +64,7 @@ class Warehouse(Observer):
                     item_counts[repr(item)] += 1
         return item_counts
 
-    def update(self):
+    def update(self) -> None:
         print(f"{self.name} has been notified about the price change.")
 
     def update_item_price(self, item_name: str, new_price: float) -> None:

@@ -1,25 +1,24 @@
 """This module contains the Item and Perishables Classes"""
 
-from datetime import date
-from typing import List
+from typing import List, Any
 from observer import Observer
 
 class Subject:
-    def __init__(self):
+    def __init__(self) -> None:
         self._observers: List["Observer"] = []
 
-    def register_observer(self, observer: "Observer"):
+    def register_observer(self, observer: "Observer") -> None:
         self._observers.append(observer)
 
-    def remove_observer(self, observer: "Observer"):
+    def remove_observer(self, observer: "Observer") -> None:
         self._observers.remove(observer)
 
-    def notify_observers(self):
+    def notify_observers(self) -> None:
         for observer in self._observers:
             observer.update()
 
 class Item(Subject):
-    def __init__(self, name: str, item_id: int, price: float, warehouse=None) -> None:
+    def __init__(self, name: str, item_id: int, price: float, warehouse: Any | None) -> None:
         """Item Constructor"""
         super().__init__()
         self._name = name
@@ -32,39 +31,39 @@ class Item(Subject):
             warehouse.add_item(self)
 
     @property
-    def name(self):
+    def name(self) -> str:
         return self._name
 
     @name.setter
-    def name(self, name):
+    def name(self, name: str) -> None:
         self._name = name
 
     @property
-    def item_id(self):
+    def item_id(self) -> int:
         return self._item_id
 
     @item_id.setter
-    def item_id(self, item_id):
+    def item_id(self, item_id: int) -> None:
         self._item_id = item_id
 
     @property
-    def price(self):
+    def price(self) -> float:
         return self._price
 
     @price.setter
-    def price(self, new_price: float):
+    def price(self, new_price: float) -> None:
         if self._price != new_price:
             self._price = new_price
             self.notify_observers()  # Notify observers when the price changes
 
     @property
-    def warehouse(self):
+    def warehouse(self) -> Any:
         return self._warehouse
 
     @warehouse.setter
-    def warehouse(self, warehouse):
+    def warehouse(self, warehouse: Any) -> None:
         self._warehouse = warehouse
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """Return a string representation of the item for printing"""
         return f"Item {self._name} (ID: {self._item_id}) Price: ${self._price}"
