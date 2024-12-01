@@ -68,6 +68,7 @@ class Warehouse(Observer):
         return item_counts
 
     def update(self) -> None:
+        """update price"""
         print(f"{self.name} has been notified about the price change.")
 
     def update_item_price(self, item_name: str, new_price: float) -> None:
