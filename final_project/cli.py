@@ -168,20 +168,7 @@ class Cli:
         table.add_column("Item Count", justify="left",
                          style="cyan", no_wrap=True)
 
-        item_counts: Dict[str, int] = {}
-
-        it = iter(warehouses.get_warehouse(name).items)
-        while True:
-            try:
-                item = next(it)
-            except StopIteration:
-                break
-            else:  # main path
-                # output = output + "| " + repr(item) + ". Count: {}."
-                if item.name not in item_counts:
-                    item_counts[item.name] = 1
-                else:
-                    item_counts[item.name] += 1
+        item_counts: Dict[str, int] = warehouses.get_warehouse(name).cli_items()
 
         for key, value in item_counts.items():
 

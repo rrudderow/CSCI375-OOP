@@ -1,5 +1,6 @@
 """this keeps track of warehouses and items in them"""
 
+from typing import List
 from typing import Optional
 from typing import Any
 from warehouse import Warehouse
@@ -16,7 +17,7 @@ class Warehouses:
                 "Cannot create multiple instances of \
                 a singleton class Solution")
 
-        self._warehouses: list[Warehouse] = []  # should be viable with subclasses of Item
+        self._warehouses: List[Warehouse] = []  # should be viable with subclasses of Item
         Warehouses._instance = self
 
     @classmethod
