@@ -70,6 +70,9 @@ class Cli:
             if (name == "7"):
                 self.op_seven(warehouses)
 
+            if (name == "8"):
+                self.op_eight(warehouses)
+
     def options(self) -> None:
         table = Table(title="Options")
 
@@ -85,6 +88,7 @@ class Cli:
         table.add_row("5", "remove a warehouse")
         table.add_row("6", "view all warehouses")
         table.add_row("7", "view a specific warehouse and its items")
+        table.add_row("8", "change an item's price")
         table.add_row("0", "To exit")
 
         self.console.print(table)
@@ -102,8 +106,10 @@ class Cli:
         item_id = sys.stdin.readline()[:-1]
         print("give the name of the warehouse to store it in: ")
         wh_name = sys.stdin.readline()[:-1]
+        print("give the item's price: ")
+        it_price = sys.stdin.readline()[:-1]
 
-        Item(item_name, item_id, warehouses.get_warehouse(wh_name))
+        Item(item_name, item_id, it_price, warehouses.get_warehouse(wh_name))
 
     def op_three(self,  warehouses: Warehouses) -> None:
         print("give the name of the warehouse you want to move from: ")
@@ -175,3 +181,24 @@ class Cli:
             table.add_row(key, str(value))
 
         self.console.print(table)
+
+    def op_eight(self, warehouses: Warehouses) -> None:
+        print("What is the item you would like to change: ")
+        item_name = sys.stdin.readline()[:-1]
+        print("What should the new price be: ")
+        new_price = sys.stdin.readline()[:-1]
+
+        found_item = False
+        for warehouse in warehouses.list_warehouses():  # Iterate through all warehouses
+            # Look for the item in this warehouse
+            item = next((item for item in warehouse.items if item.name == item_name), None)
+
+            if item:
+                # If the item is found, update its price
+                item.price = new_price  # Directly update the item's price
+                print(f"The price of '{item_name}' has been updated to {new_price}.")
+                found_item = True
+                break  # Exit the loop after updating the item
+
+        if not found_item:
+            print(f"Item '{item_name}' not found in any warehouse.")

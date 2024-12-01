@@ -11,9 +11,9 @@ Warehouse Class:
 from typing import Dict, List
 from item import Item
 from perishables import Perishables
+from observer import Observer
 
-
-class Warehouse:
+class Warehouse(Observer):
     def __init__(self, name: str) -> None:
         """ Constructor """
         self._name: str = name
@@ -31,6 +31,7 @@ class Warehouse:
 
     def add_item(self, item: Item) -> None:
         """ Adds an item to the Warehouse """
+        item.register_observer(self)
         self.items.append(item)
 
     def send_item(self, item_name: str, other: "Warehouse") -> None:
@@ -42,9 +43,10 @@ class Warehouse:
         other.add_item(item)
         self.remove_item(item_name)
 
-    def remove_item(self, item_name: str) -> None:
+    def remove_item(self, item: Item) -> None:
         """ Removes an item from the current Warehouse """
-        self.items.remove(next((item for item in self.items if item.name == item_name), None))
+        item.remove_observer(self)
+        self.items.remove(next((item for item in self.items if item.name == item), None))
 
     def cli_items(self) -> Dict[str, int]:
         """ Prints unique """
@@ -62,6 +64,18 @@ class Warehouse:
                 else:
                     item_counts[repr(item)] += 1
         return item_counts
+
+    def update(self):
+        print(f"{self.name} has been notified about the price change.")
+
+    def update_item_price(self, item_name: str, new_price: float) -> None:
+        """Finds an item by its name and updates its price."""
+        item = next((item for item in self.items if item.name == item_name), None)
+        if item:
+            item.price = new_price  # This will also notify observers
+            print(f"The price of {item_name} has been updated to {new_price}.\n")
+        else:
+            print(f"Item with name '{item_name}' not found in {self.name}.")
 
     def __repr__(self) -> str:
         """ Uses an iterator to create string repr of the Warehouse """
