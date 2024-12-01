@@ -12,11 +12,12 @@ from typing import Dict, List
 from item import Item
 from observer import Observer
 
+
 class Warehouse(Observer):
     def __init__(self, name: str) -> None:
         """ Constructor """
         self._name: str = name
-        self._items: List[Item] = []  # should be viable with subclasses of Item
+        self._items: List[Item] = []
 
     @property
     def name(self) -> str:
@@ -36,16 +37,18 @@ class Warehouse(Observer):
     def send_item(self, item_name: str, other: "Warehouse") -> None:
         """ Sends an item from current Warehouse to another """
         # This functionality should be moved to the Warehouses class
-        item = next((item for item in self.items if item.name == item_name), None)
+        item = next((item for item in self.items
+                     if item.name == item_name), None)
         if not item:
             raise ValueError(f"Item '{item_name}' not found in {self.name}.")
         other.add_item(item)
-        self.remove_item(item_name)
+        self.remove_item(item)
 
     def remove_item(self, item: Item) -> None:
         """ Removes an item from the current Warehouse """
         item.remove_observer(self)
-        self.items.remove(next((item for item in self.items if item.name == item), None))
+        self.items.remove(next((item for item in self.items
+                                if item.name == item), None))
 
     def cli_items(self) -> Dict[str, int]:
         """ Prints unique """
@@ -64,15 +67,17 @@ class Warehouse(Observer):
                     item_counts[repr(item)] += 1
         return item_counts
 
-    def update(self):
+    def update(self) -> None:
         print(f"{self.name} has been notified about the price change.")
 
     def update_item_price(self, item_name: str, new_price: float) -> None:
         """Finds an item by its name and updates its price."""
-        item = next((item for item in self.items if item.name == item_name), None)
+        item = next((item for item in self.items
+                     if item.name == item_name), None)
         if item:
             item.price = new_price  # This will also notify observers
-            print(f"The price of {item_name} has been updated to {new_price}.\n")
+            print(f"The price of {item_name} \
+                  has been updated to {new_price}.\n")
         else:
             print(f"Item with name '{item_name}' not found in {self.name}.")
 

@@ -1,8 +1,6 @@
 """this keeps track of warehouses and items in them"""
 
-from typing import List
-from typing import Optional
-from typing import Any
+from typing import Optional, List
 from warehouse import Warehouse
 
 
@@ -47,11 +45,12 @@ class Warehouses:
                 return wh
         return None
 
-    def get_warehouse(self, name: str) -> Any:
+    def get_warehouse(self, name: str) -> Warehouse | None:
         """returns a warehouse"""
         for i in self._warehouses:
             if name == i.name:
                 return i
+        return None
 
     def list_warehouses(self) -> list[Warehouse]:
         """returns a list of warehouses"""
