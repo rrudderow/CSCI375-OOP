@@ -36,19 +36,24 @@ class Warehouse(Observer):
 
     def send_item(self, item_name: str, other: "Warehouse") -> None:
         """ Sends an item from current Warehouse to another """
-        # This functionality should be moved to the Warehouses class
-        item = next((item for item in self.items
-                     if item.name == item_name), None)
+        item = self.find_item(item_name)
         if not item:
             raise ValueError(f"Item '{item_name}' not found in {self.name}.")
         other.add_item(item)
-        self.remove_item(item)
+        self.remove_item(item_name)
 
-    def remove_item(self, item: Item) -> None:
+    def find_item(self, itm_name: str) -> Item | None:
+        """ Finds an item given its name """
+        for itm in self.items:
+            if itm.name == itm_name:
+                return itm
+        return None
+
+    def remove_item(self, itm_name: str) -> None:
         """ Removes an item from the current Warehouse """
+        item: Item = self.find_item(itm_name)
         item.remove_observer(self)
-        self.items.remove(next((item for item in self.items
-                                if item.name == item), None))
+        self.items.remove(item)
 
     def cli_items(self) -> Dict[str, int]:
         """ Prints unique """
