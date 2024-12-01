@@ -67,4 +67,4 @@ class Item(Subject):
 
     def __repr__(self):
         """Return a string representation of the item for printing"""
-        return f"Item {self._name} (ID: {self._item_id})"
+        return f"Item {self._name} (ID: {self._item_id}) Price: ${self._price}"
