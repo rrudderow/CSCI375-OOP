@@ -10,7 +10,6 @@ Warehouse Class:
 
 from typing import Dict, List
 from item import Item
-from perishables import Perishables
 from observer import Observer
 
 class Warehouse(Observer):
