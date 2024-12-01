@@ -109,7 +109,8 @@ class Cli:
         print("give the item's price: ")
         it_price = sys.stdin.readline()[:-1]
 
-        Item(item_name, int(item_id), float(it_price), warehouses.get_warehouse(wh_name))
+        Item(item_name, int(item_id), float(it_price),
+             warehouses.get_warehouse(wh_name))
         # warehouses.get_warehouse(wh_name).add_item(Item)
 
     def op_three(self,  warehouses: Warehouses) -> None:
@@ -175,7 +176,8 @@ class Cli:
         table.add_column("Item Count", justify="left",
                          style="cyan", no_wrap=True)
 
-        item_counts: Dict[str, int] = warehouses.get_warehouse(name).cli_items()
+        item_counts: Dict[str, int] = \
+            warehouses.get_warehouse(name).cli_items()
 
         for key, value in item_counts.items():
 
@@ -190,14 +192,16 @@ class Cli:
         new_price = sys.stdin.readline()[:-1]
 
         found_item = False
-        for warehouse in warehouses.list_warehouses():  # Iterate through all warehouses
+        for warehouse in warehouses.list_warehouses():
             # Look for the item in this warehouse
-            item = next((item for item in warehouse.items if item.name == item_name), None)
+            item = next((item for item in warehouse.items
+                         if item.name == item_name), None)
 
             if item:
                 # If the item is found, update its price
-                item.price = float(new_price)  # Directly update the item's price
-                print(f"The price of '{item_name}' has been updated to {new_price}.")
+                item.price = float(new_price)
+                print(f"The price of '{item_name}' \
+                      has been updated to {new_price}.")
                 found_item = True
                 break  # Exit the loop after updating the item
 

@@ -15,7 +15,7 @@ class Warehouses:
                 "Cannot create multiple instances of \
                 a singleton class Solution")
 
-        self._warehouses: List[Warehouse] = []  # should be viable with subclasses of Item
+        self._warehouses: List[Warehouse] = []
         Warehouses._instance = self
 
     @classmethod

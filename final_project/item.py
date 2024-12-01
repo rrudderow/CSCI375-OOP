@@ -3,6 +3,7 @@
 from typing import List, Any
 from observer import Observer
 
+
 class Subject:
     def __init__(self) -> None:
         self._observers: List["Observer"] = []
@@ -17,8 +18,10 @@ class Subject:
         for observer in self._observers:
             observer.update()
 
+
 class Item(Subject):
-    def __init__(self, name: str, item_id: int, price: float, warehouse: Any | None) -> None:
+    def __init__(self, name: str, item_id: int, price: float,
+                 warehouse: Any | None) -> None:
         """Item Constructor"""
         super().__init__()
         self._name = name
