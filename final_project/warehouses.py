@@ -40,6 +40,7 @@ class Warehouses:
         self._warehouses.append(warehouse)
 
     def find_warehouse(self, wh_name: str) -> Warehouse | None:
+        """Find a warehouse"""
         for wh in self._warehouses:
             if wh.name == wh_name:
                 return wh

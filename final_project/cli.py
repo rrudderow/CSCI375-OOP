@@ -74,6 +74,7 @@ class Cli:
                 self.op_eight(warehouses)
 
     def options(self) -> None:
+        """Output Table CLI"""
         table = Table(title="Options")
 
         table.add_column("Values", justify="right",
@@ -94,12 +95,13 @@ class Cli:
         self.console.print(table)
 
     def op_one(self, warehouses: Warehouses) -> None:
+        """Create Warehouse"""
         print("what do you want to name your warehouse")
         wh_name = sys.stdin.readline()[:-1]
         warehouses.create_warehouse(wh_name)
 
     def op_two(self, warehouses: Warehouses) -> None:
-
+        """Add Item"""
         print("give the item name: ")
         item_name = sys.stdin.readline()[:-1]
         print("give the item id: ")
@@ -114,6 +116,7 @@ class Cli:
         # warehouses.get_warehouse(wh_name).add_item(Item)
 
     def op_three(self,  warehouses: Warehouses) -> None:
+        """Move Item"""
         print("give the name of the warehouse you want to move from: ")
 
         move_wh = sys.stdin.readline()[:-1]
@@ -132,6 +135,7 @@ class Cli:
                                warehouses.get_warehouse(other))
 
     def op_four(self, warehouses: Warehouses) -> None:
+        """Remove Item"""
         print("please enter the name of the warehouse"
               " you want to remove the item from: ")
 
@@ -144,6 +148,7 @@ class Cli:
         warehouses.get_warehouse(wh).remove_item(itemN)
 
     def op_five(self, warehouses: Warehouses) -> None:
+        """Remove Warehouse"""
         print("please enter the name of the"
               " warehouse you want to remove: ")
 
@@ -152,6 +157,7 @@ class Cli:
         warehouses.remove_warehouse(wh)
 
     def op_six(self, warehouses: Warehouses) -> None:
+        """Print Warehouses"""
         table = Table(title="Warehouses")
 
         table.add_column("Values", justify="left",
@@ -163,6 +169,7 @@ class Cli:
         self.console.print(table)
 
     def op_seven(self, warehouses: Warehouses) -> None:
+        """Print Items at Warehouse"""
         print("which warehouse would you like to see: ")
         name = sys.stdin.readline()[:-1]
 
@@ -186,6 +193,7 @@ class Cli:
         self.console.print(table)
 
     def op_eight(self, warehouses: Warehouses) -> None:
+        """Change Item Price"""
         print("What is the item you would like to change: ")
         item_name = sys.stdin.readline()[:-1]
         print("What should the new price be: ")
