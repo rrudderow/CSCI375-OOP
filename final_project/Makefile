@@ -25,6 +25,10 @@ create-docs:
 	pdoc -o ./docs *.py
 	@echo "html docs created and saved in $(DOCS)"
 
+.PHONY: test
+run-test:
+	pytest --verbose --color=yes --cov --cov-report term --cov-report html tests/
+
 .PHONY: uml
 uml:
 	plantuml uml/inventory.plantuml
