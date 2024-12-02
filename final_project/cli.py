@@ -21,6 +21,7 @@ class Cli:
                 a singleton class Solution")
 
         self.console = Console()
+        Cli._instance = self
 
     @classmethod
     def get_instance(cls) -> Optional["Cli"]:
@@ -192,7 +193,7 @@ class Cli:
         table.add_column("Item Count", justify="left",
                          style="cyan", no_wrap=True)
 
-        ware =  warehouses.get_warehouse(name)
+        ware = warehouses.get_warehouse(name)
         if not ware:
             raise ValueError(f"Warehouse {name} does not exist..")
         item_counts: Dict[str, int] = ware.cli_items()
@@ -219,7 +220,8 @@ class Cli:
 
             if item:
                 # If the item is found, update its price
-                item.price = float(new_price)  # Directly update the item's price
+                # Directly update the item's price
+                item.price = float(new_price)
                 print(f"The price of '{item_name}' has"
                       f" been updated to {new_price}.")
                 found_item = True
