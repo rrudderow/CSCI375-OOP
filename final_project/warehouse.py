@@ -88,29 +88,3 @@ class Warehouse(Observer):
                   has been updated to {new_price}.\n")
         else:
             print(f"Item with name '{item_name}' not found in {self.name}.")
-
-    def __repr__(self) -> str:
-        """ Uses an iterator to create string repr of the Warehouse """
-        output: str = f"{self.name}:\n"
-        item_counts: Dict[str, int] = {}
-        if len(self.items) == 0:
-            output = output + "| This warehouse is empty.\n"
-            return output
-
-        it = iter(self.items)
-        while True:
-            try:
-                item = next(it)
-            except StopIteration:
-                break
-            else:  # main path
-                # output = output + "| " + repr(item) + ". Count: {}."
-                if repr(item) not in item_counts:
-                    item_counts[repr(item)] = 1
-                else:
-                    item_counts[repr(item)] += 1
-
-        for key, value in item_counts.items():
-            output += f"| {key}; Count: {value}\n"
-
-        return output

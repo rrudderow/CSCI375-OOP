@@ -99,6 +99,18 @@ class TestWarehouse(unittest.TestCase):
             self.warehouse1.send_item("non_existent_item",
                                       self.warehouse2)
 
+    @given(
+        wh_name=some.text(min_size=1, max_size=50),
+        items=some.lists(
+            some.tuples(
+                some.text(min_size=1, max_size=50),
+                some.integers(min_value=1, max_value=100),
+                some.floats(min_value=0.01, max_value=1000),
+            ),
+            min_size=1,
+            max_size=20
+        )
+    )
     def test_cli_items(self, wh_name: str,
                        items: list[tuple[str, int, float]]) -> None:
         """Test cli_items method with random data."""
@@ -140,10 +152,3 @@ class TestWarehouse(unittest.TestCase):
 
         # Assert the price was updated
         self.assertEqual(mock_item.price, 15.0)
-
-    def test_repr_empty(self) -> None:
-        """Test the __repr__ method when warehouse is empty."""
-        self.assertEqual(
-            str(self.warehouse),
-            "Main Warehouse:\n| This warehouse is empty.\n"
-        )
