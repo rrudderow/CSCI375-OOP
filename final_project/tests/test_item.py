@@ -82,8 +82,3 @@ class TestItem(unittest.TestCase):
         new_warehouse = MagicMock()
         self.item.warehouse = new_warehouse
         self.assertEqual(self.item.warehouse, new_warehouse)
-
-
-# To run the tests, use:
-# if __name__ == "__main__":
-#     unittest.main()
