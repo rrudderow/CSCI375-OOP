@@ -1,4 +1,4 @@
-"""This module contains the Item and Perishables Classes"""
+"""This module contains the Item Class"""
 
 from typing import Any
 from subject import Subject
