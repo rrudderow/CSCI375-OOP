@@ -1,6 +1,9 @@
 """This module tests the warehouse.py module"""
 
+from typing import Dict
 import unittest
+from hypothesis import given
+import hypothesis.strategies as some
 from unittest.mock import patch, MagicMock
 from item import Item
 from warehouse import Warehouse
@@ -95,6 +98,23 @@ class TestWarehouse(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.warehouse1.send_item("non_existent_item",
                                       self.warehouse2)
+
+    def test_cli_items(self, wh_name: str,
+                       items: list[tuple[str, int, float]]) -> None:
+        """Test cli_items method with random data."""
+        warehouse = Warehouse(wh_name)
+        for item_name, item_id, item_price in items:
+            warehouse.add_item(Item(item_name, item_id, item_price, warehouse))
+
+        cli_counts: Dict[str, int] = warehouse.cli_items()
+        expected_counts: Dict[str, int] = {}
+        for item in warehouse.items:
+            if repr(item) not in expected_counts:
+                expected_counts[repr(item)] = 1
+            else:
+                expected_counts[repr(item)] += 1
+
+        self.assertEqual(cli_counts, expected_counts)
 
     @patch("builtins.print")
     def test_update(self, mock_print: MagicMock) -> None:
