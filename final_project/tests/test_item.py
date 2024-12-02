@@ -13,7 +13,8 @@ class TestItem(unittest.TestCase):
         # Create a mock warehouse
         self.mock_warehouse = MagicMock()
         # Create an Item instance
-        self.item = Item(name="Test Item", item_id=123, price=10.99, warehouse=self.mock_warehouse)
+        self.item = Item(name="Test Item", item_id=123,
+                         price=10.99, warehouse=self.mock_warehouse)
 
     def test_initialization(self) -> None:
         """Test that the Item is initialized correctly."""
@@ -25,8 +26,9 @@ class TestItem(unittest.TestCase):
 
     @patch.object(Item, 'notify_observers', MagicMock())
     def test_price_update_notify(self) -> None:
-        """Test that the price change triggers observer notification."""
-        with patch.object(self.item, 'notify_observers', MagicMock()) as mock_notify:
+        """Test price change triggers observer notification"""
+        with patch.object(self.item, 'notify_observers',
+                          MagicMock()) as mock_notify:
             # Change the price
             self.item.price = 15.99
 
@@ -35,7 +37,8 @@ class TestItem(unittest.TestCase):
     def test_no_notify_on_same_price(self) -> None:
         """Test that no notification occurs when the price is the same."""
         # Using patch again to mock the method inside the test
-        with patch.object(self.item, 'notify_observers', MagicMock()) as mock_notify:
+        with patch.object(self.item, 'notify_observers',
+                          MagicMock()) as mock_notify:
             # Change the price to the same value
             self.item.price = 10.99
 
@@ -43,10 +46,11 @@ class TestItem(unittest.TestCase):
             mock_notify.assert_not_called()
 
     @given(st.text(), st.integers(), st.floats(min_value=0.0))
-    def test_item_properties(self, name: str, item_id: int, price: float) -> None:
+    def test_item_properties(self, name: str, item_id: int,
+                             price: float) -> None:
         """Test the Item constructor with various inputs using Hypothesis."""
         item = Item(name=name, item_id=item_id, price=price, warehouse=None)
-        
+
         # Validate that the item properties are set correctly
         self.assertEqual(item.name, name)
         self.assertEqual(item.item_id, item_id)
@@ -54,7 +58,7 @@ class TestItem(unittest.TestCase):
 
     def test_repr(self) -> None:
         """Test the __repr__ method of Item."""
-        expected_repr = f"Item Test Item (ID: 123) Price: $10.99"
+        expected_repr = "Item Test Item (ID: 123) Price: $10.99"
         self.assertEqual(repr(self.item), expected_repr)
 
     def test_warehouse_association_on_init(self) -> None:

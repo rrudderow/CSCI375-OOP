@@ -2,7 +2,6 @@
 
 import unittest
 from unittest.mock import MagicMock
-from hypothesis import given, strategies as st
 from subject import Subject
 from observer import Observer
 
@@ -14,7 +13,7 @@ class TestSubject(unittest.TestCase):
         self.subject = Subject()
         self.mock_observer = MagicMock(spec=Observer)
         self.subject.register_observer(self.mock_observer)
-    
+
     def test_register_observer(self) -> None:
         """Test that an observer can be registered."""
         # Verify that there is one observer after registration
@@ -25,7 +24,7 @@ class TestSubject(unittest.TestCase):
         """Test that an observer can be removed."""
         # Remove the observer
         self.subject.remove_observer(self.mock_observer)
-        
+
         # Verify the observer is removed
         self.assertEqual(len(self.subject._observers), 0)
         self.assertNotIn(self.mock_observer, self.subject._observers)
@@ -35,10 +34,10 @@ class TestSubject(unittest.TestCase):
         # Register another mock observer
         another_mock_observer = MagicMock(spec=Observer)
         self.subject.register_observer(another_mock_observer)
-        
+
         # Notify observers
         self.subject.notify_observers()
-        
+
         # Verify that the update method was called for both observers
         self.mock_observer.update.assert_called_once()
         another_mock_observer.update.assert_called_once()
