@@ -39,13 +39,6 @@ class Warehouses:
         warehouse = Warehouse(name)
         self._warehouses.append(warehouse)
 
-    def find_warehouse(self, wh_name: str) -> Warehouse | None:
-        """Find a warehouse"""
-        for wh in self._warehouses:
-            if wh.name == wh_name:
-                return wh
-        return None
-
     def get_warehouse(self, name: str) -> Warehouse | None:
         """returns a warehouse"""
         for i in self._warehouses:
@@ -68,4 +61,4 @@ class Warehouses:
 
     def remove_warehouse(self, warehouse_name: str) -> None:
         """ Removes a Warehuse from the current Warehouses """
-        self._warehouses.remove(self.find_warehouse(warehouse_name))
+        self._warehouses.remove(self.get_warehouse(warehouse_name))
