@@ -37,3 +37,43 @@ class TestCli(unittest.TestCase):
             pass
 
         self.assertIsNotNone(Cli.get_instance())
+
+    def test_exception3(self) -> None:
+        Cli.reset_instance()
+        user_input = ("3\nwh1\n")
+        with mock.patch('rich.console.Console.print'):
+            with mock.patch('sys.stdin', io.StringIO(user_input)):
+                with self.assertRaises(ValueError):
+                    Cli().run_cli()
+
+    def test_exception3_2(self) -> None:
+        Cli.reset_instance()
+        user_input = ("1\nwh1\n2\napple\n2\nwh1\n2\n3\nwh1\napple\nwh2\n")
+        with mock.patch('rich.console.Console.print'):
+            with mock.patch('sys.stdin', io.StringIO(user_input)):
+                with self.assertRaises(ValueError):
+                    Cli().run_cli()
+
+    def test_exception4(self) -> None:
+        Cli.reset_instance()
+        user_input = ("4\nwh1\n")
+        with mock.patch('rich.console.Console.print'):
+            with mock.patch('sys.stdin', io.StringIO(user_input)):
+                with self.assertRaises(ValueError):
+                    Cli().run_cli()
+
+    def test_exception7(self) -> None:
+        Cli.reset_instance()
+        user_input = ("7\nwh1\n")
+        with mock.patch('rich.console.Console.print'):
+            with mock.patch('sys.stdin', io.StringIO(user_input)):
+                with self.assertRaises(ValueError):
+                    Cli().run_cli()
+
+    def test_exception8(self) -> None:
+        Cli.reset_instance()
+        user_input = ("1\nwh1\n2\napple\n2\nwh1\n2\n8\ngrapes\n3\n")
+        with mock.patch('rich.console.Console.print'):
+            with mock.patch('sys.stdin', io.StringIO(user_input)):
+                with self.assertRaises(ValueError):
+                    Cli().run_cli()

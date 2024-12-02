@@ -37,6 +37,7 @@ class Cli:
         """Resets the instance
         """
         cls._instance = None
+        Warehouses.reset_instance()
 
     def run_cli(self) -> None:
         """this runs the cli"""
@@ -228,4 +229,4 @@ class Cli:
                 break  # Exit the loop after updating the item
 
         if not found_item:
-            print(f"Item '{item_name}' not found in any warehouse.")
+            raise ValueError(f"Item '{item_name}' not found in any warehouse.")
