@@ -1,3 +1,5 @@
+DOCS = docs
+
 .PHONY: all
 all: check-style check-type unittest local_test clean
 	@echo "All done."
@@ -17,9 +19,11 @@ unittest:
 	@echo "run pytest"
 	pytest --verbose --color=yes --cov --cov-report term-missing --cov-report html .
 
-.PHONY: html-doc
-html-doc:
-	pydoc -w ./*py
+.PHONY: create-docs
+create-docs:
+	# creates .md in docs
+	pdoc -o ./docs *.py
+	@echo "html docs created and saved in $(DOCS)"
 
 .PHONY: uml
 uml:
