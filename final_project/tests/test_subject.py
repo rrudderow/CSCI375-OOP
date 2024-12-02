@@ -1,3 +1,5 @@
+"""The module is used to test the subject.py module"""
+
 import unittest
 from unittest.mock import MagicMock
 from hypothesis import given, strategies as st
@@ -6,7 +8,7 @@ from observer import Observer
 
 
 class TestSubject(unittest.TestCase):
-    
+    """Class tests Subject Class"""
     def setUp(self):
         """Set up the subject and mock observers for each test."""
         self.subject = Subject()
@@ -44,9 +46,4 @@ class TestSubject(unittest.TestCase):
     def test_notify_no_observers(self):
         """Test that no error occurs when there are no observers."""
         subject_no_observers = Subject()
-        subject_no_observers.notify_observers()  # should not raise error
-
-    def test_repr(self):
-        """Test the __repr__ method of Subject (if it exists)."""
-        # You can add a __repr__ method to your Subject class if needed, and test here.
-        pass  # This test can be ignored if you don't have __repr__ implemented.
+        subject_no_observers.notify_observers()
