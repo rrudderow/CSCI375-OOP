@@ -130,9 +130,15 @@ class Cli:
 
         other = sys.stdin.readline()[:-1]
 
-        warehouses.get_warehouse(
-            move_wh).send_item(itm_name,
-                               warehouses.get_warehouse(other))
+        move_ware = warehouses.get_warehouse(move_wh)
+        if not move_ware:
+            raise ValueError(f"Warehouse {move_wh} does not exist.")
+
+        other_ware = warehouses.get_warehouse(other)
+        if not other_ware:
+            raise ValueError(f"Warehouse {other} does not exist.")
+
+        move_ware.send_item(itm_name, other_ware)
 
     def op_four(self, warehouses: Warehouses) -> None:
         """Remove Item"""
@@ -145,7 +151,10 @@ class Cli:
 
         itemN = sys.stdin.readline()[:-1]
 
-        warehouses.get_warehouse(wh).remove_item(itemN)
+        ware = warehouses.get_warehouse(wh)
+        if not ware:
+            raise ValueError(f"Warehouse {wh} does not exist.")
+        ware.remove_item(itemN)
 
     def op_five(self, warehouses: Warehouses) -> None:
         """Remove Warehouse"""
@@ -183,8 +192,10 @@ class Cli:
         table.add_column("Item Count", justify="left",
                          style="cyan", no_wrap=True)
 
-        item_counts: Dict[str, int] = warehouses.get_warehouse(
-            name).cli_items()
+        ware =  warehouses.get_warehouse(name)
+        if not ware:
+            raise ValueError(f"Warehouse {name} does not exist..")
+        item_counts: Dict[str, int] = ware.cli_items()
 
         for key, value in item_counts.items():
 
@@ -208,9 +219,9 @@ class Cli:
 
             if item:
                 # If the item is found, update its price
-                item.price = new_price  # Directly update the item's price
+                item.price = float(new_price)  # Directly update the item's price
                 print(f"The price of '{item_name}' has"
-                      " been updated to {new_price}.")
+                      f" been updated to {new_price}.")
                 found_item = True
                 break  # Exit the loop after updating the item
 

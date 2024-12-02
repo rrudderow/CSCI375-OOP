@@ -61,4 +61,7 @@ class Warehouses:
 
     def remove_warehouse(self, warehouse_name: str) -> None:
         """ Removes a Warehuse from the current Warehouses """
-        self._warehouses.remove(self.get_warehouse(warehouse_name))
+        ware = self.get_warehouse(warehouse_name)
+        if not ware:
+            raise ValueError(f"Warehouse {warehouse_name} does not exist.")
+        self._warehouses.remove(ware)

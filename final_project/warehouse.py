@@ -51,7 +51,9 @@ class Warehouse(Observer):
 
     def remove_item(self, itm_name: str) -> None:
         """ Removes an item from the current Warehouse """
-        item: Item = self.find_item(itm_name)
+        item = self.find_item(itm_name)
+        if not item:
+            raise ValueError(f"Item '{itm_name}' not found.")
         item.remove_observer(self)
         self.items.remove(item)
 
