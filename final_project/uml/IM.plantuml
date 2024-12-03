@@ -1,0 +1,86 @@
+@startuml IM
+
+' Class: Cli
+class Cli {
+    - _instance: Optional<Cli>
+    - console: Console
+    + get_instance(): Optional<Cli>
+    + reset_instance(): void
+    + run_cli(): void
+    + options(): void
+    + op_one(warehouses: Warehouses): void
+    + op_two(warehouses: Warehouses): void
+    + op_three(warehouses: Warehouses): void
+    + op_four(warehouses: Warehouses): void
+    + op_five(warehouses: Warehouses): void
+    + op_six(warehouses: Warehouses): void
+    + op_seven(warehouses: Warehouses): void
+    + op_eight(warehouses: Warehouses): void
+}
+
+' Class: Warehouse
+class Warehouse {
+    - _name: str
+    - _items: List<Item>
+    + __init__(name: str): void
+    + name: str
+    + items: List<Item>
+    + add_item(item: Item): void
+    + send_item(item_name: str, other: Warehouse): void
+    + find_item(itm_name: str): Item | None
+    + remove_item(itm_name: str): void
+    + cli_items(): Dict[str, int]
+    + update(): void
+    + update_item_price(item_name: str, new_price: float): void
+}
+
+' Class: Warehouses
+class Warehouses {
+    - _instance: Optional<Warehouses>
+    - _warehouses: List<Warehouse>
+    + get_instance(): Optional<Warehouses>
+    + reset_instance(): void
+    + create_warehouse(name: str): void
+    + get_warehouse(name: str): Warehouse | None
+    + list_warehouses(): List[Warehouse]
+    + show_warehouses(): void
+    + remove_warehouse(warehouse_name: str): void
+}
+
+' Class: Item
+class Item {
+    - _name: str
+    - _item_id: int
+    - _price: float
+    - _warehouse: Any
+    + __init__(name: str, item_id: int, price: float, warehouse: Any | None): void
+    + name: str
+    + item_id: int
+    + price: float
+    + price(new_price: float): void
+    + warehouse: Any
+    + warehouse(warehouse: Any): void
+    + __repr__(): str
+}
+
+' Class: Subject (Superclass for Item)
+class Subject {
+    + register_observer(observer: Observer): void
+    + remove_observer(observer: Observer): void
+    + notify_observers(): void
+}
+
+' Class: Observer (Superclass for Warehouse)
+class Observer {
+    + update(): void
+}
+
+' Relationships
+Cli --> Warehouses : uses
+Warehouses --> Warehouse : contains
+Warehouse --> Item : contains
+Warehouse -|> Observer : inherits
+Item -|> Subject : inherits
+Subject --> Observer : notifies
+
+@enduml
