@@ -1,7 +1,7 @@
 DOCS = docs
 
 .PHONY: all
-all: check-style check-type unittest local_test clean
+all: check-style check-type unittest create-docs run-test uml clean
 	@echo "All done."
 
 .PHONY: check-style
@@ -25,7 +25,7 @@ create-docs:
 	pdoc -o ./docs *.py
 	@echo "html docs created and saved in $(DOCS)"
 
-.PHONY: test
+.PHONY: run-test
 run-test:
 	pytest --verbose --color=yes --cov --cov-report term --cov-report html tests/
 
