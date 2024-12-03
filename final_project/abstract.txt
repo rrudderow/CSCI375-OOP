@@ -1,11 +1,15 @@
-We are planning to create an inventory management system that allows the user to add and 
-subtract items and keeps track of how many items have been sold. The program will allow for 
-location data to be kept and updated as product is shipped around. Each item will contain its 
-current location and whether it will be moved. Location data will be an attribute of the product. 
-The program will be able to tell the user how many of each product are at each location. 
+Project Title: Warehouses System
+
+Our project is a system of warehouses. The user can add warehouses to the system, and create items
+in those warehouses. Items can be added, removed, or moved between different warehouses as the user
+wishes. Our program accurately tracks the locations and states of every item in each warehouse, and 
+uses Singleton, Observer, and Iterator design patterns to ensure that all activity is enclosed in
+a single system, manipulated without duplication or other errors, and that each item is listed
+correctly, and the counts of each item in a warehouse are dynamically tracked.
 
 """
-CLI state machiene
-iterator pattern
-singleton on CLI
+CLI state machine
+iterator pattern on Warehouse.items
+singleton on CLI and Warehouses objects
+observer pattern on Item prices
 """

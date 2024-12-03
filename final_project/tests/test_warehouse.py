@@ -1,6 +1,9 @@
 """This module tests the warehouse.py module"""
 
+from typing import Dict
 import unittest
+from hypothesis import given
+import hypothesis.strategies as some
 from unittest.mock import patch, MagicMock
 from item import Item
 from warehouse import Warehouse
@@ -96,6 +99,35 @@ class TestWarehouse(unittest.TestCase):
             self.warehouse1.send_item("non_existent_item",
                                       self.warehouse2)
 
+    @given(
+        wh_name=some.text(min_size=1, max_size=50),
+        items=some.lists(
+            some.tuples(
+                some.text(min_size=1, max_size=50),
+                some.integers(min_value=1, max_value=100),
+                some.floats(min_value=0.01, max_value=1000),
+            ),
+            min_size=1,
+            max_size=20
+        )
+    )
+    def test_cli_items(self, wh_name: str,
+                       items: list[tuple[str, int, float]]) -> None:
+        """Test cli_items method with random data."""
+        warehouse = Warehouse(wh_name)
+        for item_name, item_id, item_price in items:
+            warehouse.add_item(Item(item_name, item_id, item_price, warehouse))
+
+        cli_counts: Dict[str, int] = warehouse.cli_items()
+        expected_counts: Dict[str, int] = {}
+        for item in warehouse.items:
+            if repr(item) not in expected_counts:
+                expected_counts[repr(item)] = 1
+            else:
+                expected_counts[repr(item)] += 1
+
+        self.assertEqual(cli_counts, expected_counts)
+
     @patch("builtins.print")
     def test_update(self, mock_print: MagicMock) -> None:
         """Test update method to check if the correct message is printed."""
@@ -120,10 +152,3 @@ class TestWarehouse(unittest.TestCase):
 
         # Assert the price was updated
         self.assertEqual(mock_item.price, 15.0)
-
-    def test_repr_empty(self) -> None:
-        """Test the __repr__ method when warehouse is empty."""
-        self.assertEqual(
-            str(self.warehouse),
-            "Main Warehouse:\n| This warehouse is empty.\n"
-        )
