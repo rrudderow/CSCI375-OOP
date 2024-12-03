@@ -32,6 +32,7 @@ run-test:
 .PHONY: uml
 uml:
 	plantuml uml/fourPlusOne.plantuml
+	plantuml uml/IM.plantuml
 
 .PHONY: clean
 clean:
