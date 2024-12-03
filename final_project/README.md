@@ -7,21 +7,19 @@
 | Instructor: | Dr. Ram Basnet |
 | Students: | Aidan Meens, Renee Rudderow, Cody Stoffel |
 | Repository | https://github.com/rrudderow/CSCI375-OOP |
+| How to Run | ```python3 main.py``` |
+| How to Test | ```make all``` |
 
-_______________________________________________________________________________________________________________
-
-# Assignment
-
-## Final Project
+# Final Project
 | Name | Value |
 | --- | --- |
-| Name: | Final Project |
-| Description: | "Create an Inventory Management System Using OOD" |
+| Name: | Warehouses System |
+| Description: | Creates a system of warehouses for user organization |
 | Due Date: | 12/03/24 |
-| Status: | In Progress |
+| Status: | Complete |
 | Location: | https://github.com/rrudderow/CSCI375-OOP |
-| Self Grade | 80/100
-| Notes: | Completed all the requirements passed tests with 100% coverage |
+| Self Grade | 110/100 |
+| Notes: | Completed all the requirements, passed tests with ~99% coverage, went above and beyond with a CLI |
 
 # Group Objectives
 
