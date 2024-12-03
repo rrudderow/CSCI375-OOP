@@ -23,7 +23,7 @@ html-doc:
 
 .PHONY: uml
 uml:
-	plantuml uml/inventory.plantuml
+	plantuml uml/fourPlusOne.plantuml
 
 .PHONY: clean
 clean:

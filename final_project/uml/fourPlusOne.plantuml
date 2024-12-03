@@ -3,15 +3,19 @@ usecase (Use Case View) as UC0
 rectangle Development {
   usecase UC1 as "Every Item will have
 the attributes:
-type, number, warehouse"
+name, id, price, and warehouse
+warehouse will have attributes:
+name and items"
 }
 rectangle Process {
   usecase UC2 as "Items will be able to change: 
-warehouse, number"
+warehouse, price
+warehouse will be able to:
+add, remove, and view them"
 }
 rectangle Logical {
-  usecase UC3 as "Item Class and Warehouse Class
-Warehouse Class will be derived from Item"
+  usecase UC3 as "There will be an items class a warehouse class and
+    warehouses class as well as a CLI for user interaction between them"
 }
 rectangle Physical {
   usecase UC4 as "Program will be implemented in Python"
