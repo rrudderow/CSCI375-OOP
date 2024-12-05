@@ -19,6 +19,7 @@
 | Status: | Complete |
 | Location: | https://github.com/rrudderow/CSCI375-OOP |
 | Self Grade | 110/100 |
+| Judges Grade | 50/45 |
 | Notes: | Completed all the requirements, passed tests with ~99% coverage, went above and beyond with a CLI |
 
 # Group Objectives
